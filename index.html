@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Cédric Thonus</title>
+
+		<meta charset="utf-8" />
+		<meta name="application-name" content="Cédric Thonus" />
+		<meta name="description" content="Junior Full Stack Developer" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#FFFFFF" />
+		<meta name="msapplication-navbutton-color" content="#FFFFFF" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="#FFFFFF" />
+
+        <link rel="stylesheet" href="assets/css/style.css" />
+
+	</head>
+
+	<body>
+
+		<details class="changelog">
+			<summary>Changelog</summary>
+		</details>
+
+		<div class="welcome">
+			<h1 class="name-surname">
+				Hi, I'm Cédric <span class="waving-hand">👋🏻</span>
+			</h1>
+
+			<p class="about">
+				Junior full stack developer based in Brussels, Belgium.<br />
+                Passionate about web technologies.<br />
+			</p>
+
+			<ul class="contact">
+				<li>
+					<a
+						href="mailto:me@cedricthonus.be"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img class="social" src="assets/images/icons/email.svg" alt="Email" />
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://github.com/cedream"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							class="social"
+							src="assets/images/icons/github.svg"
+							alt="GitHub"
+						/>
+					</a>
+				</li>
+			</ul>
+        </div>
+        
+        <div id="skills">
+            <h1>
+				Languages, frameworks & tools
+            </h1>
+            <ul id="languages">
+                <li class="list-inline-item"><img alt="html5" src="assets/images/icons/html5.svg"/><span class="label">HTML5</span></li>
+                <li class="list-inline-item"><img alt="css3" src="assets/images/icons/css3.svg"/><span class="label">CSS3</span></li>
+                <li class="list-inline-item"><img alt="javascript" src="assets/images/icons/javascript.svg"/> <span class="label">JavaScript</span></li>
+                <li class="list-inline-item"><img alt="jquery" src="assets/images/icons/jquery.svg"/> <span class="label">jQuery</span></li>
+                <li class="list-inline-item"><img alt="react" src="assets/images/icons/react.svg"/><span class="label">React</span></li>
+                <li class="list-inline-item"><img alt="php" src="assets/images/icons/php.svg"/><span class="label">PHP</span></li>
+                <li class="list-inline-item"><img alt="laravel" src="assets/images/icons/laravel.svg"/><span class="label">Laravel</span></li>
+                <li class="list-inline-item"><img alt="java" src="assets/images/icons/java.svg"/><span class="label">Java</span></li>
+                <li class="list-inline-item"><img alt="c" src="assets/images/icons/c.svg"/><span class="label">C</span></li>
+                <li class="list-inline-item"><img alt="c++" src="assets/images/icons/cplusplus.svg"/><span class="label">C++</span></li>
+                <li class="list-inline-item"><img alt="material ui" src="assets/images/icons/material-ui.svg"/><span class="label">Material UI</span></li>
+                <li class="list-inline-item"><img alt="bootstrap" src="assets/images/icons/bootstrap.svg"/><span class="label">Bootstrap</span></li>
+                <li class="list-inline-item"><img alt="mysql" src="assets/images/icons/mysql.svg"/><span class="label">Mysql</span></li>
+                <li class="list-inline-item"><img alt="git" src="assets/images/icons/git.svg"/><span class="label">Git</span></li>
+                <li class="list-inline-item"><img alt="webpack" src="assets/images/icons/webpack.svg"/><span class="label">Webpack</span></li>
+                <li class="list-inline-item"><img alt="linux" src="assets/images/icons/linux.svg"/><span class="label">Linux</span></li>
+            </ul>
+        </div>
+
+		<div id="thank-you">
+			<h2>me@cedricthonus.be</h2>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
+		<script>
+			if(window.location.protocol != 'https:') {
+                location.href = location.href.replace("http://", "https://");
+            }
+			new SmoothScroll('a[href*="#"]', { offset: 64 })
+
+			axios.get('https://api.github.com/repos/cedream/cedricthonus/commits')
+			.then((res) => {
+				res.data.forEach((c) => {
+					let change = document.createElement("div")
+					let time = document.createElement("time")
+					let date = new Date(c.commit.author.date)
+					time.innerHTML = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+					let desc = document.createElement("span")
+					desc.innerHTML = c.commit.message
+					change.appendChild(time)
+					change.appendChild(desc)
+					document.querySelector(".changelog").appendChild(change)
+				})
+			})
+		</script>
+	</body>
+</html>
